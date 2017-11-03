@@ -1,9 +1,13 @@
 ## Abstract Algebra
+Comprehensive notes cover each section of the textbook. Zip files corresponding
+to each pdf contain the respective lecture audio.
 
 ### Textbook
 *"A First Course In Abstract Algebra", John B. Fraleigh, 7th edition*
 
 Download it on [LBRY](https://lbry.io/) at lbry://abstractalgebra
+
+___
 
 ### Table of Contents
 * [Sets and
