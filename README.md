@@ -1,7 +1,9 @@
 ## Abstract Algebra
 
 ### Textbook
-["A First Course In Abstract Algebra", John B. Fraleigh, 7th edition]()
+*"A First Course In Abstract Algebra", John B. Fraleigh, 7th edition*
+
+Download it on [LBRY](https://lbry.io/) at lbry://abstractalgebra
 
 ### Table of Contents
 * Sets and Relations
