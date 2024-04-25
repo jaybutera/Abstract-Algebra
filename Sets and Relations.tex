@@ -1,0 +1,257 @@
+\title{Sets 4 Relations}
+\date{}
+\author{}
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amsthm, thmtools}
+\usepackage{fullpage, changepage, tabto}
+\usepackage{enumerate, enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=BlueGreen, citecolor=BlueGreen, urlcolor=BlueGreen]{hyperref}
+
+% set tab distances
+\NumTabs{16}
+
+%%% theorem environments for styling
+% notation
+\declaretheoremstyle[
+    notefont={\normalfont},
+    spaceabove={0.5em},
+    spacebelow={0.5em},
+    notebraces={}{},
+    headformat={\NOTE},
+    headpunct={},
+    postheadhook={\hspace{0em}\tabto{4em}},
+    ]{notation}
+\declaretheorem[style=notation]{notation}
+
+% definition
+\declaretheoremstyle[
+    headfont={\itshape},
+    notefont={\normalfont\bfseries},
+    spaceabove={1em},
+    notebraces={}{},
+    headformat={def \NOTE \newline},
+    headpunct={ },
+    postheadhook={\hspace{0em}\vspace{0.25em}\tab},
+    ]{definition}
+\declaretheorem[style=definition,name=Definition,
+refname={definition,definitions}]{definition}
+
+% note
+\declaretheoremstyle[
+    headfont={\bfseries},
+    shaded={margin={1.5em}, textwidth={20em}},
+    headformat={note: \newline},
+    headpunct={ },
+    ]{note}
+\declaretheorem[style=note]{note}
+
+
+% prettier empty set
+\newcommand{\nullset}{\varnothing}
+
+% logic spacing
+\newcommand{\spaced}[1]{\, #1 \,}
+\newcommand{\scomp}{\spaced{\backslash}}
+\newcommand{\sland}{\spaced{\land}}
+\newcommand{\slor}{\spaced{\lor}}
+\newcommand{\simplies}{\spaced{\Rightarrow}}
+\newcommand{\slexists}{\, \exists}
+
+% set macros
+\newcommand{\buildset}[2]{\{\spaced{#1} \mid \spaced{#2} \}}
+\newcommand{\finiteset}[3]{\{ \spaced{#1,} \spaced{#2,} \spaced{#3,} \spaced{\dots} \}}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+    \section{notation}
+        \vspace{1em}
+        % --- changes in some sections to update note shorthand to clear text
+        \begin{notation}[$\mathbb{R}$]
+            the set of real numbers
+        \end{notation}
+        \begin{notation}[$\mathbb{C}$]
+            the set of complex numbers
+        \end{notation}
+        \begin{notation}[$\mathbb{Q}$]
+            the set of rational numbers \tab\tab $\buildset{\frac{n}{m}}{n, m \in \mathbb{Z} \sland m \not= 0 \sland \gcd(n, m) = 1}$
+        \end{notation}
+        \begin{notation}[$\mathbb{Z}$]
+            the set of integers
+        \end{notation}
+        \begin{notation}[$\mathbb{N}$]
+            the set of natural numbers \tab\tab $\finiteset{1}{2}{3}$
+        \end{notation}
+        \begin{notation}[$A^*$]
+            the non-zero elements of $A$ \tab\tab $\buildset{a \in A}{a \not= 0}$
+        \end{notation}
+        \begin{notation}[$A^+$]
+            the positive elements of $A$ \tab\tab
+            $\buildset{a \in A}{a > 0}$
+        \end{notation}
+        \begin{notation}[$A^-$]
+            the negative elements of $A$ \tab\tab
+            $\buildset{a \in A}{a < 0}$
+        \end{notation}
+        \begin{notation}[$\mathbb{R} \scomp \mathbb{Q}$]
+            the set of irrational numbers \tab\tab $\buildset{a \in \mathbb{R}}{a \notin \mathbb{Q}}$
+            \tab note: $(\mathbb{R} \scomp \mathbb{Q}) \cap \mathbb{Q} = \nullset$
+        \end{notation}
+        \begin{notation}[$\exists x$]
+            there exists at least one $x$
+        \end{notation}
+        \begin{notation}[$\exists 'x$]
+            there exists only one $x$
+        \end{notation}
+    
+    \newpage
+    \section{set definitions}
+        \vspace{1em}
+        
+        \color{blue}
+        \begin{definition}[subset]\label{subset}
+            $A$ is a \textbf{subset} of $B$ $A \subseteq B$ iff $\forall a \in A, \, a \in B$
+        \end{definition}
+        
+        \color{ForestGreen}
+        \begin{definition}[proper subset]\label{proper subset}
+            % ---changed from the notes which said
+            % $A$ is a \textbf{proper subset} of $B$ iff $\forall a \in A,
+            % a \in B \land \exists b \in B, b \in A$ (denoted $A \subset B$)
+            $A$ is a \textbf{proper subset} of $B$ iff $\forall a \in A, a \in B \sland \slexists b \in B, b \not\in A$ (denoted $A \subset B$)
+        \end{definition}
+        
+        \color{Red}
+        \begin{definition}[relation]\label{relation}
+            a \textbf{relation} $\mathcal{R}$ on a set $A$ is a subset of $A \times A$ \tab\tab $\mathcal{R} \subseteq A \times A$
+        \end{definition}
+        
+        \color{Purple}
+        \begin{definition}[equivalence relation]\label{equivalence relation}
+            $\mathcal{R}$ is an \textbf{equivalence relation} iff
+            \begin{enumerate}[label={\arabic*)}, partopsep=0.5em, itemsep=0.25em, left=6em]
+            
+                \item it is \textbf{reflexive}
+                \begin{definition}[reflexive]\label{reflexive}
+                    $\forall a \in A, \; a\mathcal{R}a \quad ((a, a) \in \mathcal{R})$\end{definition}
+                % --- changed from notes which had for all a, a in A
+                
+                \item it is \textbf{symmetric}
+                \begin{definition}[symmetric]\label{symmetric}
+                    $\forall \, a, \, b \in A, \; a\mathcal{R}b \simplies b\mathcal{R}a$
+                \end{definition}
+                
+                \item it is \textbf{transitive}
+                \begin{definition}[transitive]\label{transitive}
+                    $\forall \, a, \, b, \, c \in A, \; a\mathcal{R}b \sland b\mathcal{R}c \simplies a\mathcal{R}c$
+                \end{definition}
+                
+            \end{enumerate}
+        \end{definition}
+        
+    \color{Black}    
+    \newpage
+    \section{set operations}
+    
+        \begin{notation}[$A \cup B$]
+            union \tab\tab\tab\tab\tab\tab $\buildset{x}{x \in A \slor x \in B}$
+        \end{notation}
+        
+        \begin{notation}[$A \cap B$]
+            intersection \tab\tab\tab\tab\tab $\buildset{x}{x \in A \sland x \in B}$
+        \end{notation}
+        
+        \begin{notation}[$A \scomp B$]
+            complement of $B$ in $A$ \tab\tab\tab $\buildset{x}{x \in A \sland x \not\in B}$
+        \end{notation}
+        
+        \begin{notation}[$A \times B$]
+            cartesian product of $A$ and $B$ \tab $\buildset{(x,\, y)}{x \in A \sland x \in B}$
+        \end{notation}
+        
+        \vspace{1em}
+        \begin{note}
+            \hspace{1em}\vspace{1em}
+                $$\begin{rcases*}
+                    A \cup B = B \cup A \quad \\
+                    A \cap B = B \cap A \quad \\
+                \end{rcases*} \quad \text{commutative}$$
+                $$\quad\quad A \times B \not= B \times A \quad \big\rbrace \quad \text {not commutative}$$
+        \end{note}
+        \vspace{1em}
+
+    \newpage
+    \section{properties of relations}
+        % --- reordered these for ease of reading
+        
+        \color{Red}
+        \begin{definition}[injective]\label{injective}
+            a function $f: \, A \rightarrow B$ is 
+            \textbf{injective} (one-to-one) iff $\forall \, a_1, a_2 \in A, \, f(a_1) = f(a_2) \simplies a_1 = a_2$
+        \end{definition}
+        
+        \begin{definition}[surjective]\label{surjective}
+            $f: \, A \rightarrow B$ is 
+            \textbf{surjective} (onto) iff $\forall b \in B \, \slexists a \in A \text{ where } f(a) = b$
+        \end{definition}
+        
+        \begin{definition}[bijective]\label{bijective}
+            a function $f: \, A \rightarrow B$ is \textbf{bijective} iff it is 
+            \nameref{injective} (one-to-one) and \nameref{surjective} (onto $B$).
+            \color{Black}
+            
+            \begin{note}
+                \tab a bijective function has an inverse
+            \end{note}
+        \end{definition}
+        
+    \newpage
+    \color{Black}
+    \section{cardinality}
+    
+        \begin{definition}[equinumerous]\label{equinumerous}
+            \hspace{0em}\vspace{-1em}\\
+            \tab\tab having the same cardinality (size)\newline
+            \vspace{1em}
+            \tab let $S$ be a collection of sets and $\mathcal{R}$ a \nameref{relation} on $S$.\newline
+            \vspace{1em}
+            \tab let $A,\, B$ be sets and $A,\, B \in S$. $A\mathcal{R}B$ iff $\exists f$ where $f: A \rightarrow B$ and $f$ is \nameref{bijective}. if $A\mathcal{R}B$, $A$ and $B$ are \newline
+            \tab\tab equinumerous because they have a one-to-one correspondence\newline
+            \vspace{1em}
+            \tab consider:
+            
+            \begin{proof}[\unskip\nopunct]
+                \begin{enumerate}[label={\arabic*)}, partopsep=1em, itemsep=0.25em, left=6em]
+                
+                    \item $\forall A \in S, \, A\mathcal{R}A$ because $\exists f = \text{id}_{A}: A \rightarrow A$ as $f$, bijective, and so $\mathcal{R}$ is \nameref{reflexive}
+                    
+                    \item $\forall A, \, B \in S$, $A\mathcal{R}B \simplies B\mathcal{R}A$ because $\exists f: A \rightarrow B$ and as $f$ is bijective $\exists g = f^{-1}: B \rightarrow A$, so $\mathcal{R}$ is \nameref{symmetric}
+                    \item $\forall A, \, B, \, C \in S, \, A\mathcal{R}B \sland B\mathcal{R}C \simplies A\mathcal{R}C$ as $\exists f: A \rightarrow B,\slexists g: B \rightarrow C$ and $f,\, g$ are bijective $\Rightarrow \slexists h: A \rightarrow C$ so $\mathcal{R}$ is \nameref{transitive} 
+
+                \end{enumerate}
+                
+                \vspace{1em}
+                \tab thus $\mathcal{R}$ is an \nameref{equivalence relation} on $S$ and partitions $S$
+                \end{proof}
+                
+                \begin{note}
+                    \hspace{0em}\vspace{0.5em}
+                    \tab $E_A = \buildset{\mathcal{R} \in S}{A\mathcal{R}B}$ contains all the \newline
+                    \tab\tab sets of size $|A|$
+                \end{note}
+                
+        \end{definition}
+        
+        \begin{definition}[denumerable]\label{denumerable}
+            a set $A$ is \textbf{denumerable} iff $A$ is \nameref{equinumerous} to $\mathbb{N}$
+        \end{definition}
+        
+        \begin{definition}[countable]\label{countable}
+            a set $A$ is \textbf{countable} iff $A$ is finite or \nameref{denumerable}
+        \end{definition}
+        
+\end{document}
