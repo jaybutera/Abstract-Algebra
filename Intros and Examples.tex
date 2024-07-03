@@ -1,0 +1,138 @@
+\title{Groups 4 Subgroups}
+\date{}
+\author{}
+\documentclass{article}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{amsthm, thmtools}
+\usepackage{fullpage, changepage, tabto}
+\usepackage{enumerate, enumitem}
+\usepackage{mathtools}
+\usepackage[colorlinks=true, linkcolor=BlueGreen, citecolor=BlueGreen, urlcolor=BlueGreen]{hyperref}
+\usepackage{asymptote}
+\usepackage{wrapfig}
+\usepackage{parskip}
+
+% set tab distances
+\NumTabs{16}
+
+%%% theorem environments for styling
+% notation
+\declaretheoremstyle[
+    notefont={\normalfont},
+    spaceabove={0.5em},
+    spacebelow={0.5em},
+    notebraces={}{},
+    headformat={\NOTE},
+    headpunct={},
+    postheadhook={\hspace{0em}\tabto{4em}},
+    ]{notation}
+\declaretheorem[style=notation]{notation}
+
+% definition
+\declaretheoremstyle[
+    headfont={\itshape},
+    notefont={\normalfont\bfseries},
+    spaceabove={1em},
+    notebraces={}{},
+    headformat={def \NOTE \newline},
+    headpunct={ },
+    postheadhook={\hspace{0em}\vspace{0.25em}\tab},
+    ]{definition}
+\declaretheorem[style=definition,name=Definition,
+refname={definition,definitions}]{definition}
+
+% note
+\declaretheoremstyle[
+    headfont={\bfseries},
+    shaded={margin={1.5em}, textwidth={20em}},
+    headformat={note: \newline},
+    headpunct={ },
+    ]{note}
+\declaretheorem[style=note]{note}
+
+
+% prettier empty set
+\newcommand{\nullset}{\varnothing}
+
+% logic spacing
+\newcommand{\spaced}[1]{\, #1 \,}
+\newcommand{\scomp}{\spaced{\backslash}}
+\newcommand{\sland}{\spaced{\land}}
+\newcommand{\slor}{\spaced{\lor}}
+\newcommand{\simplies}{\spaced{\Rightarrow}}
+\newcommand{\slexists}{\, \exists}
+
+% set macros
+\newcommand{\buildset}[2]{\{\spaced{#1} \mid \spaced{#2} \}}
+\newcommand{\finiteset}[3]{\{ \spaced{#1,} \spaced{#2,} \spaced{#3,} \spaced{\dots} \}}
+
+\begin{document}
+    \maketitle
+    \tableofcontents
+    \newpage
+    \section{intro}
+    $$\text{Consider }U = \buildset{z \in \mathbb{C}}{\lvert z \rvert = 1} \subseteq \mathbb{C}.$$
+    \begin{wrapfigure}[2]{l}{0.35\textwidth}
+    \begin{asy}
+    settings.outformat="pdf";
+    unitsize(1cm);
+    draw((0,0) -- (2,0), arrow=Arrow(TeXHead));
+    draw((0,0) -- (-2,0), arrow=Arrow(TeXHead));
+    draw((0,0) -- (0,-2), arrow=Arrow(TeXHead));
+    draw((0,0) -- (0,2), arrow=Arrow(TeXHead));
+    draw(unitcircle);
+    \end{asy}
+    \end{wrapfigure}
+    \vspace{24pt}
+    \begin{note}
+    each elem of $U$ is defined by $\theta \in [0, 2\pi) = \mathbb{R}_{2\pi}$
+    \end{note}
+    \vspace{48pt}
+    \begin{center}
+    Every angle $\theta \in \mathbb{R}_{2\pi}$ given by $f: U \rightarrow R_{2\pi}, \, f(z) = \theta$ for $z = e^{i\theta}$\\
+    \vspace{8pt}
+    +\\
+    \vspace{8pt}
+    $f^{-1}: \mathbb{R}_{2\pi} \rightarrow U, \, f^{-1}(\theta) = e^{i\theta}$\\
+    \vspace{24pt}
+    Consider $U$ with multiplication:\\
+    \medskip
+    Let $z_1 = e^{i\theta_1},\, z_2 = e^{i\theta_2} \in U$\\
+    \vspace{8pt}
+    then $z_1 \cdot z_2 = e^{i\theta_1}\cdot e^{i\theta_2} = e^{i\left(\theta_1 + \theta_2\right)}$ where $\theta_1, \, \theta_2 \in \mathbb{R}_{2\pi},\, \theta_1 + \theta_2 \in \mathbb{R}_{2\pi}$\\
+    \vspace{8pt}
+    Set $U$ is \underline{closed} under multiplication. 
+    \end{center}
+
+\section{definition}
+    \begin{definition}[algebraic structure]\label{algebraic structure}
+    \hspace{0em}\vspace{-1em}\\
+    \tab\tab Let $S$ be a set.\\
+    \tab\tab Let $\star$ be a binary operation on $S$\\
+    \tab\tab\tab $\star: S \times S \rightarrow S$\\
+    \tab\tab $\left(S,\, \star \right)$ is an \textbf{algebraic structure}
+    \end{definition}
+    \vspace{12pt}
+    So $\left(U,\, \cdot\right)$ and $\left(\mathbb{R}_{2\pi},\, +_{2\pi}\right)$ are algebraic structures such that there is a ``1-1" relation between $U$ and $\mathbb{R}_{2\pi}$ and operations are preserved.
+    \vspace{8pt}
+    
+    $$\left(U,\, \cdot\right) \simeq \left(\mathbb{R}_{2\pi},\, +_{2\pi}\right)$$
+    \begin{center}or\end{center}
+    $$U \simeq \mathbb{R}_{2\pi}$$
+
+\section{isomorphisms}
+To show two algebraic structures are isomorphic, find a bijective function that preserves the operations.\\
+Isomorphic structures share the same algebraic properties (associativity, commutative, distributive...).\\
+To show two algebraic structures are \underline{not} isomorphic, find a property that they don't share (the easiest to check is cardinality).
+
+\subsection{Examples}
+\begin{center}
+$$\left(\mathbb{N},\, +\right) \not\simeq \left(\mathbb{Z},\, +\right)$$
+because $\mathbb{N}$ has no additive identity
+$$\left(\mathbb{Z}^{*},\, \cdot\right) \not\simeq \left(\mathbb{Q}^{*},\, \cdot\right)$$
+because not all elements of $\mathbb{Z}^*$ have inverses $\left(\frac{n}{m}\right)^{-1} = \frac{m}{n}$
+$$\left(\mathbb{R},\, +\right) \not\simeq \left(\mathbb{R},\, \cdot\right)$$
+because $x \star x + 1 = 0$ is solveable in $\left(\mathbb{R},\, +\right): 2x + 1 = 0$ but unsolveable in $\left(\mathbb{R},\, \cdot\right): x^2 + 1 = 0$
+\end{center}        
+\end{document}
